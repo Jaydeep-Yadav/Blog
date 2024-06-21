@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, PostCard } from '../components'
 import appwriteService from "../appwrite/config";
-import { Query } from 'appwrite';
 import { useSelector } from 'react-redux';
 
 
@@ -10,7 +9,7 @@ function MyPosts() {
     
     const [posts, setPosts] = useState([])
     useEffect(() => {}, [])
-    appwriteService.myPosts([Query.equal('userId', userData?.$id)]).then((posts) => {
+    appwriteService.myPosts([]).then((posts) => {
         if (posts) {
             setPosts(posts.documents)
         }

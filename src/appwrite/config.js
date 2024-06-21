@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Account, Databases, Storage, Query, ID } from "appwrite";
+import { Client, Databases, Storage, Query, ID } from "appwrite";
 
 export class Service {
     client = new Client();
@@ -90,12 +90,12 @@ export class Service {
                 //! pagination, //
             )
         } catch (error) {
-            console.log("Appwrite service :: getPosts :: error ", error);
+            console.log("Appwrite service :: getPosts :: error ", error.message);
             return false;
         }
     }
 
-    async myPosts(queries = []) {
+    async myPosts(queries = [Query.equal('userId', this.$id)]) {
         try {
            return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
@@ -104,7 +104,7 @@ export class Service {
                 //! pagination, //
             )
         } catch (error) {
-            console.log("Appwrite service :: getPosts :: error ", error);
+            console.log("Appwrite service :: myPosts :: error ", error);
             return false;
         }
     }
